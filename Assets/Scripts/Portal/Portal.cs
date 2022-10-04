@@ -18,7 +18,7 @@ public class Portal : MonoBehaviour
 
 
                 collision.GetComponent<Transform>().position = ConnectedPortal.transform.position;
-                cameraTransform.rotation = ConnectedPortal.transform.rotation;
+                //cameraTransform.rotation = ConnectedPortal.transform.rotation;
                 collision.GetComponent<Transform>().rotation = ConnectedPortal.transform.rotation;
                 collision.GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
 
