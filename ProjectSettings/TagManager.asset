@@ -54,3 +54,6 @@ TagManager:
   - name: Player
     uniqueID: 273995847
     locked: 0
+  - name: GameControl
+    uniqueID: 1672277461
+    locked: 0
