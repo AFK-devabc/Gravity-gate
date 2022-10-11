@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -9,7 +10,6 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float x_axisGravity;
     [SerializeField] private float y_axisGravity;
-
     [SerializeField] private Transform groundCheck;
     private Rigidbody2D body;
 
@@ -23,8 +23,9 @@ public class PlayerMovement : MonoBehaviour
     private float ZrotationAngle;
     float sinRotation;
     float cosRotation;
-
     private bool isGrounded = false;
+   
+    public GameObject Boost;
 
     Vector2 gravity;
     private void Awake()
@@ -35,9 +36,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.15F, groundLayer);
-        animator.SetBool("isgrounded", isGrounded);
 
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.15F, groundLayer);
+
+
+        animator.SetBool("isgrounded", isGrounded);
 
         HorizontalInput = Input.GetAxis("Horizontal");
         if (HorizontalInput > 0.01f)
@@ -50,16 +53,21 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
+
+
         ZrotationAngle = transform.rotation.eulerAngles.z * Mathf.Deg2Rad;
         sinRotation = MathF.Sin(ZrotationAngle);
         cosRotation = MathF.Cos(ZrotationAngle);
 
         GravityControl();
 
+
+
         body.velocity = new Vector2(HorizontalInput*Speed * cosRotation, HorizontalInput * Speed * sinRotation )        // Left, right move (cos, sin)
             + new Vector2(-sinRotation * body.velocity.x, cosRotation * body.velocity.y)                                //Jumping move      (-sin, cos)
             + gravity* Time.deltaTime ;                                                                                 //gravity           (sin, -cos)
         //Debug.Log(cosRotation);
+        Debug.Log(-body.velocity.y - jumpPower * 0.8f);
 
         if (Input.GetKey(KeyCode.Space) )
             Jump();
@@ -68,10 +76,12 @@ public class PlayerMovement : MonoBehaviour
     private void Jump()
     {
         if (isGrounded)
+        {
             body.velocity = new Vector2(HorizontalInput * Speed * cosRotation
                 - jumpPower * sinRotation
                 , (HorizontalInput * Speed + body.velocity.y) * sinRotation
-                + jumpPower * cosRotation) ;
+                + jumpPower * cosRotation);
+        }
     }
 
 
@@ -83,4 +93,14 @@ public class PlayerMovement : MonoBehaviour
         gravity = new Vector2(x_axisGravity * sinRotation  ,- y_axisGravity * cosRotation );
     }
 
+    private void CreateLandingAnimation()
+    {
+        Boost = Instantiate(Resources.Load("Prefabs/LandingParticle"), groundCheck.position, transform.rotation) as GameObject;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.relativeVelocity.magnitude > 0.8f*jumpPower)
+           CreateLandingAnimation();
+    }
 }

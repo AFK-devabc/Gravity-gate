@@ -1458,6 +1458,10 @@ PrefabInstance:
       propertyPath: pause
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4758891499949394101, guid: d47fee47ad9fa014395279d0ec94bebf, type: 3}
+      propertyPath: EndGameScene
+      value: 
+      objectReference: {fileID: 5411392852403711325}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d47fee47ad9fa014395279d0ec94bebf, type: 3}
 --- !u!1001 &2548339619226241095
@@ -1606,7 +1610,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5411392851561874959, guid: 350434598038a274fa5735495ea7b9fc, type: 3}
       propertyPath: m_Pivot.x
-      value: 0.43735352
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5411392851561874959, guid: 350434598038a274fa5735495ea7b9fc, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1618,11 +1622,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5411392851561874959, guid: 350434598038a274fa5735495ea7b9fc, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 348
+      value: -80
       objectReference: {fileID: 0}
     - target: {fileID: 5411392851561874959, guid: 350434598038a274fa5735495ea7b9fc, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 107
+      value: -80
       objectReference: {fileID: 0}
     - target: {fileID: 5411392851891756196, guid: 350434598038a274fa5735495ea7b9fc, type: 3}
       propertyPath: m_Pivot.x
@@ -1762,3 +1766,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 350434598038a274fa5735495ea7b9fc, type: 3}
+--- !u!1 &5411392852403711325 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 21791790914596715, guid: 350434598038a274fa5735495ea7b9fc, type: 3}
+  m_PrefabInstance: {fileID: 5411392852403711324}
+  m_PrefabAsset: {fileID: 0}
