@@ -67,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
             + new Vector2(-sinRotation * body.velocity.x, cosRotation * body.velocity.y)                                //Jumping move      (-sin, cos)
             + gravity* Time.deltaTime ;                                                                                 //gravity           (sin, -cos)
         //Debug.Log(cosRotation);
-        Debug.Log(-body.velocity.y - jumpPower * 0.8f);
+        //Debug.Log(-body.velocity.y - jumpPower * 0.8f);
 
         if (Input.GetKey(KeyCode.Space) )
             Jump();
